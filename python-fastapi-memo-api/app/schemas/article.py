@@ -5,15 +5,18 @@ from pydantic import BaseModel, Field
 class ArticleCreate(BaseModel):
     title: str = Field(min_langth=1, max_length=200)
     content: str
+    category_id: Optional[int] = None
 
 class ArticleModify(BaseModel):
     title: Optional[str] = Field(default=None, min_length=1, max_length=200)
     content: Optional[str] = None
+    category_id: Optional[int] = None
 
 class ArticleOut(BaseModel):
     id: int
     title: str
     content: str
+    category_id: Optional[int] = None
     created_at: datetime
     updated_at: datetime
 
