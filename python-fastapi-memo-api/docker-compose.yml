@@ -1,0 +1,46 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:16
+    container_name: memo-postgres
+    environment:
+      DATABASE_URL: ${DATABASE_URL}
+      TZ: ${TZ:-Asia/Seoul}
+      POSTGRES_DB: memo
+      POSTGRES_USER: app
+      POSTGRES_PASSWORD: app
+    ports:
+      - "5432:5432"   # 로컬에서 접근 필요 없으면 지워도 됨
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U app -d memo || exit 1"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  api:
+    build: .
+    container_name: memo-api
+    env_file:
+      - .env
+    environment:
+      # 안전하게 강제 주입(루트 .env에서 가져오지만 여기에도 명시 가능)
+      DATABASE_URL: ${DATABASE_URL}
+      TZ: ${TZ:-Asia/Seoul}
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+    command: >
+      uvicorn app.main:app
+      --host 0.0.0.0
+      --port 8000
+      --reload
+
+volumes:
+  pgdata:
