@@ -1,7 +1,7 @@
 from datetime import datetime, timezone
 from typing import TYPE_CHECKING, List, Optional
 from app.db import Base
-from sqlalchemy import Integer, DateTime, String, ForeignKey, UniqueConstraint
+from sqlalchemy import Integer, DateTime, String, ForeignKey, Text, UniqueConstraint
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 if TYPE_CHECKING:
@@ -15,6 +15,8 @@ class Category(Base):
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     name: Mapped[str] = mapped_column(String(50), index=True)
+    description: Mapped[str | None] = mapped_column(Text, nullable=True)
+
     parent_id: Mapped[Optional[int]] = mapped_column(ForeignKey("categories.id", ondelete="CASCADE"), nullable=True, index=True)
 
     # 자기참조

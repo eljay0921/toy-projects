@@ -5,14 +5,17 @@ from pydantic import BaseModel, Field
 class CategoryCreate(BaseModel):
     name: str = Field(min_length=2, max_length=50)
     parent_id: Optional[int] = None
+    description: Optional[str] = Field(default=None, max_length=500)
 
 class CategoryModify(BaseModel):
     name: Optional[str] = Field(default=None, min_length=2, max_length=50)
     parent_id: Optional[int] = None
+    description: Optional[str] = Field(default=None, max_length=500)
 
 class CategoryOut(BaseModel):
     id: int
     name: str
+    description: Optional[str] = None
     parent_id: Optional[int] = None
     created_at: datetime
 
@@ -22,6 +25,7 @@ class CategoryOut(BaseModel):
 class CategoryTreeOut(BaseModel):
     id: int
     name: str
+    description: Optional[str] = None
     parent_id: Optional[int] = None
     created_at: datetime
     children: List["CategoryTreeOut"] = []

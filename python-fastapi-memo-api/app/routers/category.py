@@ -34,7 +34,11 @@ def create_category(payload: CategoryCreate, db: Session = Depends(get_db)):
     if dup:
         raise ConflictError("카테고리 이름이 중복됩니다.") 
     
-    c = Category(name=payload.name, parent_id=payload.parent_id)
+    c = Category(
+        name=payload.name, 
+        parent_id=payload.parent_id, 
+        description=payload.description,
+    )
     db.add(c)
     db.commit()
     db.refresh(c)
@@ -58,8 +62,8 @@ def list_categories_tree(db: Session = Depends(get_db)):
     
     def to_node(ct: Category) -> CategoryTreeOut:
         return CategoryTreeOut(
-            id=ct.id, name=ct.name, parent_id=ct.parent_id, created_at=ct.created_at, 
-            children=[CategoryTreeOut(id=ch.id, name=ch.name, parent_id=ch.parent_id, created_at=ch.created_at, children=[]) for ch in ct.children]
+            id=ct.id, name=ct.name, description=ct.description, parent_id=ct.parent_id, created_at=ct.created_at, 
+            children=[CategoryTreeOut(id=ch.id, name=ch.name, description=ch.description, parent_id=ch.parent_id, created_at=ch.created_at, children=[]) for ch in ct.children]
         )
 
     return [to_node(c) for c in parents]
