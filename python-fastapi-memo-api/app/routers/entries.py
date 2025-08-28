@@ -25,7 +25,7 @@ def list_entries(
     if q:
         query = query.filter(models.Entry.title.ilike(f"%{q}%")) | (models.Entry.content.ilike(f"%{q}%"))
     
-    rows = query.order_by(models.Entry.entry_date.desc()).offset((page - 1) * size).limit(size).all()
+    rows = query.order_by(models.Entry.created_at.desc()).offset((page - 1) * size).limit(size).all()
     return rows
 
 @router.put("/{entry_id}", response_model=schemas.EntryOut)
@@ -35,6 +35,20 @@ def update_entry(entry_id: int, payload: schemas.EntryCreate, db: Session = Depe
         raise HTTPException(404, "Entry not found")
     
     for k, v in payload.model_dump().items():
+        setattr(e, k, v)
+
+    db.commit()
+    db.refresh(e)
+    return e
+
+@router.patch("/{entry_id}", response_model=schemas.EntryOut)
+def modity_entry(entry_id: int, payload: schemas.EntryModify, db: Session = Depends(get_db)):
+    e = db.query(models.Entry).get(entry_id)
+    if not e:
+        raise HTTPException(404, "Entry not found")
+    
+    update_data = payload.model_dump(exclude_unset=True)
+    for k, v in update_data.items():
         setattr(e, k, v)
 
     db.commit()
