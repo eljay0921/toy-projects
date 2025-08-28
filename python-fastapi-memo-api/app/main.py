@@ -9,8 +9,6 @@ from app.routers import article, category
 from app import models
 from app.core.errors import AppError
 
-Base.metadata.create_all(bind=engine)
-
 app = FastAPI(title="Memo API v1.0.0", version="1.0.0")
 app.include_router(article.router)
 app.include_router(category.router)

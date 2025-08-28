@@ -16,10 +16,13 @@ RUN pip install --no-cache-dir -r /app/requirements.txt
 
 # 앱 소스 복사
 COPY . /app
-RUN chmod +x /app/entrypoint.sh
+
+# entrypoint.sh 복사
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN (sed -i 's/\r$//' /usr/local/bin/entrypoint.sh || true) && chmod +x /usr/local/bin/entrypoint.sh
 
 # 기본 실행: uvicorn (compose에서 덮어쓸 수도 있음)
 # CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
 
 # alembic + entrypoint.sh 적용
-CMD ["/app/entrypoint.sh"]
+CMD ["/usr/local/bin/entrypoint.sh"]
