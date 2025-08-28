@@ -3,7 +3,7 @@ from typing import Optional
 from pydantic import BaseModel, Field
 
 class ArticleCreate(BaseModel):
-    title: str = Field(min_langth=1, max_length=200)
+    title: str = Field(min_length=1, max_length=200)
     content: str
     category_id: Optional[int] = None
 
