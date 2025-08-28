@@ -3,19 +3,19 @@ from sqlalchemy.orm import Session
 from typing import Optional
 from app.db import get_db
 from app.models.article import Article
-from app.schemas.article import Create, Modify, Out
+from app.schemas.article import ArticleCreate, ArticleModify, ArticleOut
 
 router = APIRouter(prefix="/articles", tags=["articles"])
 
-@router.post("", response_model=Out, status_code=201)
-def create_article(payload: Create, db: Session = Depends(get_db)):
+@router.post("", response_model=ArticleOut, status_code=201)
+def create_article(payload: ArticleCreate, db: Session = Depends(get_db)):
     e = Article(**payload.model_dump())
     db.add(e)
     db.commit()
     db.refresh(e)
     return e
 
-@router.get("", response_model=list[Out])
+@router.get("", response_model=list[ArticleOut])
 def list_articles(
     q: Optional[str] = None,
     page: int = Query(1, ge=1),
@@ -29,8 +29,8 @@ def list_articles(
     rows = query.order_by(Article.created_at.desc()).offset((page - 1) * size).limit(size).all()
     return rows
 
-@router.put("/{article_id}", response_model=Out)
-def update_article(article_id: int, payload: Create, db: Session = Depends(get_db)):
+@router.put("/{article_id}", response_model=ArticleOut)
+def update_article(article_id: int, payload: ArticleCreate, db: Session = Depends(get_db)):
     e = db.query(Article).get(article_id)
     if not e:
         raise HTTPException(404, "Article not found")
@@ -42,8 +42,8 @@ def update_article(article_id: int, payload: Create, db: Session = Depends(get_d
     db.refresh(e)
     return e
 
-@router.patch("/{article_id}", response_model=Out)
-def modity_article(article_id: int, payload: Modify, db: Session = Depends(get_db)):
+@router.patch("/{article_id}", response_model=ArticleOut)
+def modity_article(article_id: int, payload: ArticleModify, db: Session = Depends(get_db)):
     e = db.query(Article).get(article_id)
     if not e:
         raise HTTPException(404, "Article not found")

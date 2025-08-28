@@ -2,15 +2,15 @@ from datetime import datetime
 from typing import Optional
 from pydantic import BaseModel, Field
 
-class Create(BaseModel):
+class ArticleCreate(BaseModel):
     title: str = Field(min_langth=1, max_length=200)
     content: str
 
-class Modify(BaseModel):
+class ArticleModify(BaseModel):
     title: Optional[str] = Field(default=None, min_length=1, max_length=200)
     content: Optional[str] = None
 
-class Out(BaseModel):
+class ArticleOut(BaseModel):
     id: int
     title: str
     content: str
