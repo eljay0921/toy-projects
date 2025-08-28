@@ -5,6 +5,7 @@ from sqlalchemy.orm import Session
 from app.db import get_db
 from app.models import Category, Article
 from app.schemas.category import CategoryCreate, CategoryModify, CategoryOut, CategoryTreeOut
+from app.schemas.article import ArticleOut
 
 router = APIRouter(prefix="/categories", tags=["categories"])
 
@@ -101,8 +102,8 @@ def modify_category(category_id: int, payload: CategoryModify, db: Session = Dep
 
 @router.delete("/{category_id}", status_code=204)
 def delete_category(category_id: int, force: bool = False, db: Session = Depends(get_db)):
-    c = db.get(Category, category_id)
-    if not c:
+    category = db.get(Category, category_id)
+    if not category:
         raise HTTPException(404, "카테고리를 찾을 수 없습니다.")
 
     children_cnt = db.query(Category).filter(Category.parent_id == category_id).count()
@@ -111,6 +112,42 @@ def delete_category(category_id: int, force: bool = False, db: Session = Depends
     if not force and (children_cnt > 0 or articles_cnt > 0):
         raise HTTPException(409, f"In use (children={children_cnt}, articles={articles_cnt}). Use ?force=true to delete.")
 
-    db.delete(c)  # 부모 삭제 시 자식은 CASCADE, 기사 category_id는 NULL(SET NULL)
+    db.delete(category)  # 부모 삭제 시 자식은 CASCADE, 기사 category_id는 NULL(SET NULL)
     db.commit()
     return None
+
+@router.get("/{category_id}/articles", response_model=List[ArticleOut])
+def list_articles_by_category(
+    category_id: int,
+    include_children: bool = Query(False, description="자식 카테고리의 글을 포함할지 여부"),
+    page: int = Query(1, ge=1),
+    size: int = Query(20, ge=1, le=100),
+    db: Session = Depends(get_db)
+):
+    # 카테고리 확인
+    category = db.get(Category, category_id)
+    if not category:
+        raise HTTPException(404, "카테고리를 찾을 수 없습니다.")
+    
+    # 쿼리
+    query = db.query(Article)
+    
+    if include_children:
+        children_ids = select(Category.id).where(Category.parent_id == category_id)
+        query = query.filter(
+            or_ (
+                Article.category_id == category_id,
+                Article.category_id.in_(children_ids),
+            )
+        )
+    else:    
+        query = query.filter(Article.category_id == category_id)
+
+    rows = (
+        query.order_by(Article.created_at.desc())
+                .offset((page - 1) * size)
+                .limit(size)
+                .all()
+    )
+
+    return rows
