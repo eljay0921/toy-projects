@@ -3,7 +3,7 @@
 각 폴더별로 프로젝트를 나눠놨습니다.
 
 # 목록
-1. Python + FastAPI 실습 ([바로가기](/python-fastapi-memo-api))
+1. Python + FastAPI 실습 ([바로가기](/python-fastapi-memo-api/README.md))
 1. (coming soon)
 
 
