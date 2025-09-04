@@ -1,11 +1,12 @@
 from datetime import datetime, timezone
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING, Optional, List
 from sqlalchemy import ForeignKey, Integer, String, DateTime, Text
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.db import Base
 
 if TYPE_CHECKING:
     from .category import Category
+    from .tag import Tag
 
 class Article(Base):
     __tablename__ = "articles"
@@ -17,6 +18,13 @@ class Article(Base):
     # 카테고리 관계 추가
     category_id: Mapped[Optional[int]] = mapped_column(ForeignKey("categories.id", ondelete="SET NULL"), nullable=True, index=True)
     category: Mapped[Optional["Category"]] = relationship(back_populates="articles")
+
+    # 태그 관계 추가 (Many-to-many)
+    tags: Mapped[List["Tag"]] = relationship(
+        "Tag",
+        secondary="article_tags",
+        back_populates="articles"
+    )
 
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=lambda: datetime.now(timezone.utc))
     updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=lambda: datetime.now(timezone.utc), onupdate=lambda: datetime.now(timezone.utc))

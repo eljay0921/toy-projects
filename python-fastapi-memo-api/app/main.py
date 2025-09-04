@@ -5,13 +5,14 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 from sqlalchemy.exc import IntegrityError
 
 from app.db import Base, engine
-from app.routers import article, category
+from app.routers import article, category, tag
 from app import models
 from app.core.errors import AppError
 
 app = FastAPI(title="Memo API v1.0.0", version="1.0.0")
 app.include_router(article.router)
 app.include_router(category.router)
+app.include_router(tag.router)
 
 @app.get("/health")
 def health():

@@ -1,22 +1,26 @@
 from datetime import datetime
-from typing import Optional
+from typing import Optional, List
 from pydantic import BaseModel, Field
+from .tag import TagOut
 
 class ArticleCreate(BaseModel):
     title: str = Field(min_length=1, max_length=200)
     content: str
     category_id: Optional[int] = None
+    tag_names: Optional[List[str]] = []
 
 class ArticleModify(BaseModel):
     title: Optional[str] = Field(default=None, min_length=1, max_length=200)
     content: Optional[str] = None
     category_id: Optional[int] = None
+    tag_names: Optional[List[str]] = None
 
 class ArticleOut(BaseModel):
     id: int
     title: str
     content: str
     category_id: Optional[int] = None
+    tags: List[TagOut] = []
     created_at: datetime
     updated_at: datetime
 

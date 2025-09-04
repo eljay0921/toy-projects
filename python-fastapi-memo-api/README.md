@@ -6,7 +6,7 @@
 - [x] 모델 정의 : 메모(아티클), 카테고리
 - [x] 기능 구현
 - [x] 카테고리 모델 수정
-- [ ] 태그 기능(모델) 추가 예정
+- [x] 태그 기능(모델) 추가 완료 🎉
 - [ ] ...
 
 ## 목적
@@ -21,6 +21,7 @@
 
 - FastAPI로 CRUD 라우터 구성
 - SQLAlchemy 2.0 스타일 ORM 실습 (관계, 제약, naming convention)
+- **Many-to-Many 관계**: Article ↔ Tag (해시태그 기능)
 - 환경 분리(.env) + `pydantic-settings`
 - Alembic 마이그레이션 및 엔트리포인트 자동 실행
 - Docker Compose로 Postgres + API 통합 구동
@@ -48,19 +49,23 @@ python-fastapi-memo-api/
 │  │  ├─ settings.py          # pydantic-settings 기반 환경설정 (APP_ENV 매핑)
 │  │  └─ errors.py            # AppError/NotFound/Conflict 등 커스텀 오류
 │  ├─ models/
-│  │  ├─ article.py           # Article 모델 (title/content/category_id/...)
-│  │  └─ category.py          # Category 모델 (self-reference, 2단계 제한)
+│  │  ├─ article.py           # Article 모델 (title/content/category_id/tags...)
+│  │  ├─ category.py          # Category 모델 (self-reference, 2단계 제한)
+│  │  └─ tag.py               # Tag 모델 (Many-to-Many with Article)
 │  ├─ schemas/
-│  │  ├─ article.py           # Pydantic in/out 스키마
-│  │  └─ category.py
+│  │  ├─ article.py           # Pydantic in/out 스키마 (태그 지원)
+│  │  ├─ category.py
+│  │  └─ tag.py               # Tag 관련 스키마
 │  └─ routers/
-│     ├─ article.py           # /articles CRUD
-│     └─ category.py          # /categories CRUD + 트리, 중복 방지, 2단계 제한
+│     ├─ article.py           # /articles CRUD (태그 필터링/관리 포함)
+│     ├─ category.py          # /categories CRUD + 트리, 중복 방지, 2단계 제한
+│     └─ tag.py               # /tags CRUD + 아티클 연결 관리
 ├─ alembic/
 │  ├─ env.py
 │  └─ versions/
 │     ├─ 9095defb8518_init_schema.py
-│     └─ 0e6a970a707a_add_description_to_categories.py
+│     ├─ 0e6a970a707a_add_description_to_categories.py
+│     └─ c2a7f0d053df_add_tag_model_and_many_to_many_.py
 ├─ requirements.txt
 ├─ docker-compose.yml
 ├─ Dockerfile
@@ -141,11 +146,18 @@ uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
 - 같은 부모(`parent_id`) 아래 **이름 중복 금지** (`UniqueConstraint("parent_id", "name")`)
 - 필드: `id`, `name`, `description?`, `parent_id?`, `created_at`
 
+### Tag
+
+- 필드: `id`, `name(unique)`, `created_at`
+- 태그명은 **고유**해야 함
+- `Tag ↔ Article` Many-to-Many 관계 (`article_tags` 중간 테이블)
+
 ### Article
 
 - 필드: `id`, `title(<=200)`, `content(Text)`, `category_id?`, `created_at`, `updated_at`
 - `category_id`는 `SET NULL` on delete
 - `Article ↔ Category` 양방향 관계
+- `Article ↔ Tag` Many-to-Many 관계 (해시태그 기능)
 
 ---
 
@@ -193,12 +205,22 @@ uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
 ### Articles
 
 - `POST /articles` → 기사(메모) 생성
-  - Body: `title`, `content`, `category_id?`
+  - Body: `title`, `content`, `category_id?`, `tag_names?` (태그명 배열)
 - `GET /articles` → 목록 조회
-  - 쿼리(예상): `q`, `category_id`, 페이지네이션 등
-- `GET /articles/{id}` → 단건 조회
-- `PATCH /articles/{id}` → 부분 수정 (제공된 필드만 반영)
+  - 쿼리: `q`, `category_id`, `tag_id`, 페이지네이션 등
+- `GET /articles/{id}` → 단건 조회 (연결된 태그 정보 포함)
+- `PATCH /articles/{id}` → 부분 수정 (제공된 필드만 반영, 태그 포함)
 - `DELETE /articles/{id}` → 삭제
+
+### Tags
+
+- `POST /tags` → 태그 생성
+  - Body: `name` (고유해야 함)
+- `GET /tags` → 태그 목록
+  - 쿼리: `q`(검색), 페이지네이션, 각 태그별 아티클 개수 포함
+- `GET /tags/{id}` → 단건 조회
+- `DELETE /tags/{id}` → 삭제 (연결된 아티클과의 관계도 함께 삭제)
+- `GET /tags/{id}/articles` → 특정 태그가 달린 아티클 목록
 
 > 실제 지원 쿼리 파라미터/응답 스키마는 코드 기준이며, 문서 UI를 통해 확인하세요.
 
@@ -215,24 +237,39 @@ curl -X POST http://localhost:8000/categories \
     "description": "개발 관련 메모 모음"
   }'
 
-# 2) 아티클 생성
+# 2) 태그 생성
+curl -X POST http://localhost:8000/tags \
+  -H "Content-Type: application/json" \
+  -d '{"name": "fastapi"}'
+
+# 3) 아티클 생성 (태그와 함께)
 curl -X POST http://localhost:8000/articles \
   -H "Content-Type: application/json" \
   -d '{
-    "title": "FastAPI 메모",
-    "content": "라우터/스키마/에러핸들러 정리",
-    "category_id": 1
+    "title": "FastAPI 학습 메모",
+    "content": "FastAPI와 SQLAlchemy를 사용한 웹 개발",
+    "category_id": 1,
+    "tag_names": ["fastapi", "python", "web"]
   }'
 
-# 3) 목록 조회
-curl "http://localhost:8000/articles?category_id=1&q=fastapi"
+# 4) 태그별 아티클 필터링
+curl "http://localhost:8000/articles?tag_id=1"
 
-# 4) 부분 수정
+# 5) 태그 목록 조회 (아티클 개수 포함)
+curl "http://localhost:8000/tags"
+
+# 6) 특정 태그의 아티클들
+curl "http://localhost:8000/tags/1/articles"
+
+# 7) 아티클 부분 수정 (태그 수정 포함)
 curl -X PATCH http://localhost:8000/articles/1 \
   -H "Content-Type: application/json" \
-  -d '{ "title": "FastAPI 메모 (수정)" }'
+  -d '{
+    "title": "FastAPI 메모 (수정)",
+    "tag_names": ["fastapi", "backend"]
+  }'
 
-# 5) 삭제
+# 8) 삭제
 curl -X DELETE http://localhost:8000/articles/1
 ```
 
@@ -264,8 +301,11 @@ alembic downgrade -1
 - `SessionLocal` + `Depends(get_db)` 패턴으로 세션을 주입합니다.
 - 모델 `relationship` 설정으로 **역참조**까지 정의:  
   - `Category.children` (자기참조), `Category.articles`
-  - `Article.category`
+  - `Article.category`, `Article.tags`
+  - `Tag.articles`
+- **Many-to-Many 관계**: `article_tags` 중간 테이블로 Article ↔ Tag 연결
 - 카테고리 계층은 **2단계 제한** (루트 → 자식까지만)으로 단순화했습니다.
+- **태그 자동 생성**: 아티클 생성/수정 시 `tag_names`로 태그 자동 생성 또는 기존 태그 연결
 - 전역 에러 응답은 `Problem Details` 스타일로 통일했습니다.
 
 ---
