@@ -1,4 +1,4 @@
-package example.kotlin
+package example.kotlin.dataclass
 
 data class Person (
     val name: String,

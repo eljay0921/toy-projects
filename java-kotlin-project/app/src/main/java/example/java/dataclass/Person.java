@@ -1,4 +1,4 @@
-package example.java;
+package example.java.dataclass;
 
 import java.util.Objects;
 
