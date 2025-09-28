@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4857521c-3d54-4e3c-9e9d-c65567fce886" name="변경" comment="" />
+    <list default="true" id="4857521c-3d54-4e3c-9e9d-c65567fce886" name="변경" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -57,6 +59,9 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Gradle.'java-kotlin-project.app.test'에 있는 테스트.executor": "Run",
+    "Gradle.ImmutablePersonTest.executor": "Run",
+    "Gradle.PersonTest.testDataClassToString.executor": "Run",
     "Gradle.java-kotlin-project 빌드.executor": "Run",
     "Gradle.java-kotlin-project:app [:app:org.example.App.main()].executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
