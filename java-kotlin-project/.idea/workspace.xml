@@ -5,12 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4857521c-3d54-4e3c-9e9d-c65567fce886" name="변경" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/example/java/dataclass/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/example/kotlin/dataclass/Person.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/example/kotlin/dataclass/User.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/example/java/dataclass/Rectangle.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/example/kotlin/dataclass/Rectangle.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/example/java/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/example/java/dataclass/Person.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/example/kotlin/Person.kt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
