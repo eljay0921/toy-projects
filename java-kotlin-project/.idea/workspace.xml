@@ -5,9 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4857521c-3d54-4e3c-9e9d-c65567fce886" name="변경" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/example/java/basic/BasicSnippets.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/example/kotlin/basic/BasicSnippets.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/example/kotlin/basic/ExtensionFunction.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/example/java/basic/NullSafety.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/example/kotlin/basic/NullSafety.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
