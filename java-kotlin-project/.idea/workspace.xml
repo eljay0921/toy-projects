@@ -5,10 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4857521c-3d54-4e3c-9e9d-c65567fce886" name="변경" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/test/kotlin/example/kotlin/basic/NullSafetyTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/test/java/example/java/basic/ConditionsAndLoopsTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/test/kotlin/example/kotlin/basic/ConditionsAndLoopsTest.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/example/kotlin/basic/NullSafety.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/example/kotlin/basic/NullSafety.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +65,13 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Gradle.'java-kotlin-project.app.test'에 있는 테스트.executor": "Run",
+    "Gradle.ConditionsAndLoopsTest.executor": "Run",
+    "Gradle.ConditionsAndLoopsTest.getGradeTest (1).executor": "Run",
+    "Gradle.ConditionsAndLoopsTest.getGradeTest.executor": "Run",
     "Gradle.ImmutablePersonTest.executor": "Run",
+    "Gradle.NullSafetyTest (1).executor": "Run",
+    "Gradle.NullSafetyTest.executor": "Run",
+    "Gradle.NullSafetyTest.findUserTest.executor": "Run",
     "Gradle.NullSafetyTest.getDisplayNameTest.executor": "Run",
     "Gradle.NullSafetyTest.getUpperCaseNameTest.executor": "Run",
     "Gradle.NullSafetyTest.getUserEmailDomainTest.executor": "Run",
@@ -92,8 +97,8 @@
       <recent name="example.kotlin.dataclass" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.NullSafetyTest">
-    <configuration name="NullSafetyTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+  <component name="RunManager" selected="Gradle.'java-kotlin-project.app.test'에 있는 테스트">
+    <configuration name="ConditionsAndLoopsTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -106,7 +111,7 @@
           <list>
             <option value=":app:test" />
             <option value="--tests" />
-            <option value="&quot;example.kotlin.basic.NullSafetyTest&quot;" />
+            <option value="&quot;example.kotlin.basic.ConditionsAndLoopsTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -117,7 +122,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="NullSafetyTest.getUserEmailDomainTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="ConditionsAndLoopsTest.getDayTypeTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -130,7 +135,7 @@
           <list>
             <option value=":app:test" />
             <option value="--tests" />
-            <option value="&quot;example.kotlin.basic.NullSafetyTest.getUserEmailDomainTest&quot;" />
+            <option value="&quot;example.kotlin.basic.ConditionsAndLoopsTest.getDayTypeTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -141,7 +146,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="NullSafetyTest.processUserTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="ConditionsAndLoopsTest.getGradeTest (1)" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -154,7 +159,7 @@
           <list>
             <option value=":app:test" />
             <option value="--tests" />
-            <option value="&quot;example.kotlin.basic.NullSafetyTest.processUserTest&quot;" />
+            <option value="&quot;example.kotlin.basic.ConditionsAndLoopsTest.getGradeTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -165,7 +170,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="NullSafetyTest.riskyFunctionTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="ConditionsAndLoopsTest.getGradeTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -178,7 +183,7 @@
           <list>
             <option value=":app:test" />
             <option value="--tests" />
-            <option value="&quot;example.kotlin.basic.NullSafetyTest.riskyFunctionTest&quot;" />
+            <option value="&quot;example.java.basic.ConditionsAndLoopsTest.getGradeTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -189,7 +194,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="NullSafetyTest.smartCastExampleTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="'java-kotlin-project.app.test'에 있는 테스트" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -201,8 +206,6 @@
         <option name="taskNames">
           <list>
             <option value=":app:test" />
-            <option value="--tests" />
-            <option value="&quot;example.kotlin.basic.NullSafetyTest.smartCastExampleTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -215,11 +218,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.NullSafetyTest" />
-        <item itemvalue="Gradle.NullSafetyTest.riskyFunctionTest" />
-        <item itemvalue="Gradle.NullSafetyTest.smartCastExampleTest" />
-        <item itemvalue="Gradle.NullSafetyTest.processUserTest" />
-        <item itemvalue="Gradle.NullSafetyTest.getUserEmailDomainTest" />
+        <item itemvalue="Gradle.'java-kotlin-project.app.test'에 있는 테스트" />
+        <item itemvalue="Gradle.ConditionsAndLoopsTest" />
+        <item itemvalue="Gradle.ConditionsAndLoopsTest.getDayTypeTest" />
+        <item itemvalue="Gradle.ConditionsAndLoopsTest.getGradeTest (1)" />
+        <item itemvalue="Gradle.ConditionsAndLoopsTest.getGradeTest" />
       </list>
     </recent_temporary>
   </component>
