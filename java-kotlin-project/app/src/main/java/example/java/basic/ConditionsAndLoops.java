@@ -1,6 +1,12 @@
 package example.java.basic;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class ConditionsAndLoops {
+
+    // 조건문 ==============================================================================
 
     // if-else
     public String getGrade(int score) {
@@ -37,4 +43,29 @@ public class ConditionsAndLoops {
     public String getStatus(boolean isActive) {
         return isActive ? "Active" : "Inactive";
     }
+
+    // 반복문 ==============================================================================
+
+    private void normalForLoop() {
+        for (int i = 0; i < 10; i++) {
+            System.out.println(i);
+        }
+    }
+
+    private void enhancedForLoop() {
+        List<String> friends = Arrays.asList("jin", "jake", "jane");
+        for (String name : friends) {
+            System.out.println(name);
+        }
+    }
+
+    private void streamApi() {
+        List<String> friends = Arrays.asList("jin", "jake", "jane");
+        friends.stream()
+                .filter(name -> name.length() > 3)
+                .map(String::toUpperCase)
+                .forEach(System.out::println);
+    }
+
+
 }

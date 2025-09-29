@@ -5,9 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4857521c-3d54-4e3c-9e9d-c65567fce886" name="변경" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/test/java/example/java/basic/ConditionsAndLoopsTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/test/kotlin/example/kotlin/basic/ConditionsAndLoopsTest.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/example/java/basic/ConditionsAndLoops.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/example/java/basic/ConditionsAndLoops.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/example/kotlin/basic/ConditionsAndLoops.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/example/kotlin/basic/ConditionsAndLoops.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,6 +66,7 @@
   "keyToString": {
     "Gradle.'java-kotlin-project.app.test'에 있는 테스트.executor": "Run",
     "Gradle.ConditionsAndLoopsTest.executor": "Run",
+    "Gradle.ConditionsAndLoopsTest.getDayTypeTest.executor": "Run",
     "Gradle.ConditionsAndLoopsTest.getGradeTest (1).executor": "Run",
     "Gradle.ConditionsAndLoopsTest.getGradeTest.executor": "Run",
     "Gradle.ImmutablePersonTest.executor": "Run",
