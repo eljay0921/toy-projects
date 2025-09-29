@@ -17,7 +17,8 @@ class NullSafety {
 
     // Safe call 체이닝
     fun getUserEmailDomain(user: User?): String {
-        return user?.email?.substringAfter("@") ?: "unknown"
+        // return user?.email?.substringAfter("@") ?: "unknown" // email이 빈 문자열일 때 null이 아니라서 의도한 대로 동작하지 않았음
+        return user?.email?.takeIf { it.contains("@") }?.substringAfter("@") ?: "unknown"
     }
 
     // let을 이용한 null 처리
@@ -30,7 +31,7 @@ class NullSafety {
 
     // 강제 언랩핑(!!) - 주의
     fun riskyFunction(text: String?) {
-        val length = text!!.length // null이면 KotlinNullPointerException
+        val length = text!!.length // null이면 NullPointerException
     }
 
     // 스마트 캐스팅
