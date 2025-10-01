@@ -21,7 +21,7 @@ public class Coupon {
     private Long id;
 
     @NotBlank
-    @Column(nullable = false, unique = true, length = 100)
+    @Column(nullable = false, unique = true, length = 16)
     private String code;
 
     @NotBlank
@@ -84,7 +84,8 @@ public class Coupon {
         this.issuedQuantity++;
     }
 
-    public Integer getRemainingQuantity() {
-        return totalQuantity - issuedQuantity;
+    public void updateIssuedQuantity(int quantity) {
+        this.issuedQuantity = quantity;
+        this.updatedAt = LocalDateTime.now();
     }
 }
