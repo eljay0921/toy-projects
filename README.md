@@ -4,7 +4,7 @@
 
 # 목록
 1. python-fastapi-memo-api ([바로가기](/python-fastapi-memo-api/README.md))
-2. java-kotlin-project ([바로가기](/java-kotlin-project.README.md))
+2. java-kotlin-project ([바로가기](/java-kotlin-project/README.md))
 3. (coming soon)
 
 
