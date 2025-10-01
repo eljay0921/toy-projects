@@ -26,14 +26,22 @@ public class CouponIssue {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
+    /// 쓰기 성능이 더 중요하므로 추가함
+    @Column(name = "user_id", nullable = false)
+    private Long userId;
+
+    /// 쓰기 성능이 더 중요하므로 추가함
+    @Column(name = "coupon_id", nullable = false)
+    private Long couponId;
+
+    /// 조회용 (선택적)
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id", insertable = false, updatable = false)
     private User user;
 
-    @NotNull
+    /// 조회용 (선택적)
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "coupon_id", nullable = false)
+    @JoinColumn(name = "coupon_id", insertable = false, updatable = false)
     private Coupon coupon;
 
     @Column(nullable = false, updatable = false)
@@ -52,6 +60,14 @@ public class CouponIssue {
         this.issuedAt = LocalDateTime.now();
         this.status = CouponIssueStatus.ISSUED;
     }
+
+    public CouponIssue(Long userId, Long couponId) {
+        this.userId = userId;
+        this.couponId = couponId;
+        this.issuedAt = LocalDateTime.now();
+        this.status = CouponIssueStatus.ISSUED;
+    }
+
 
     public void use() {
         if (this.status != CouponIssueStatus.ISSUED) {
