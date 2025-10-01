@@ -16,7 +16,6 @@ public class CouponResponse {
     private String description;
     private Integer totalQuantity;
     private Integer issuedQuantity;
-    private Integer remainingQuantity;
     private LocalDateTime startAt;
     private LocalDateTime endAt;
     private boolean available;
@@ -31,7 +30,6 @@ public class CouponResponse {
             coupon.getDescription(),
             coupon.getTotalQuantity(),
             coupon.getIssuedQuantity(),
-            coupon.getRemainingQuantity(),
             coupon.getStartAt(),
             coupon.getEndAt(),
             coupon.isAvailable(),
