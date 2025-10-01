@@ -5,7 +5,5 @@
 # 목록
 1. python-fastapi-memo-api ([바로가기](/python-fastapi-memo-api/))
 2. java-kotlin-project ([바로가기](/java-kotlin-project/))
-3. (coming soon)
-
-
-
+3. coupon-rush-redis ([바로가기](/coupon-rush-redis/))
+4. (next...)
