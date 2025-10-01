@@ -3,8 +3,9 @@
 각 폴더별로 프로젝트를 나눠놨습니다.
 
 # 목록
-1. python-fastapi-memo-api ([바로가기](/python-fastapi-memo-api/README.md))
-1. (coming soon)
+1. python-fastapi-memo-api ([바로가기](/python-fastapi-memo-api/))
+2. java-kotlin-project ([바로가기](/java-kotlin-project/))
+3. (coming soon)
 
 
 
