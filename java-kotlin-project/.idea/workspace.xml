@@ -5,9 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4857521c-3d54-4e3c-9e9d-c65567fce886" name="변경" comment="">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/example/java/basic/HigherOrderFunctions.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/example/java/basic/LambdaExample.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/example/kotlin/basic/HigherOrderFunctions.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/example/kotlin/basic/LambdaExample.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/example/java/basic/ConditionsAndLoops.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/example/java/basic/ConditionsAndLoops.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/example/kotlin/basic/ConditionsAndLoops.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/example/kotlin/basic/ConditionsAndLoops.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,38 +63,39 @@
   <component name="ProjectViewState">
     <option name="autoscrollFromSource" value="true" />
     <option name="showLibraryContents" value="true" />
+    <option name="showScratchesAndConsoles" value="false" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Gradle.'java-kotlin-project.app.test'에 있는 테스트.executor": "Run",
-    "Gradle.ConditionsAndLoopsTest.executor": "Run",
-    "Gradle.ConditionsAndLoopsTest.getDayTypeTest.executor": "Run",
-    "Gradle.ConditionsAndLoopsTest.getGradeTest (1).executor": "Run",
-    "Gradle.ConditionsAndLoopsTest.getGradeTest.executor": "Run",
-    "Gradle.ImmutablePersonTest.executor": "Run",
-    "Gradle.NullSafetyTest (1).executor": "Run",
-    "Gradle.NullSafetyTest.executor": "Run",
-    "Gradle.NullSafetyTest.findUserTest.executor": "Run",
-    "Gradle.NullSafetyTest.getDisplayNameTest.executor": "Run",
-    "Gradle.NullSafetyTest.getUpperCaseNameTest.executor": "Run",
-    "Gradle.NullSafetyTest.getUserEmailDomainTest.executor": "Run",
-    "Gradle.NullSafetyTest.processUserTest.executor": "Run",
-    "Gradle.NullSafetyTest.riskyFunctionTest.executor": "Run",
-    "Gradle.NullSafetyTest.smartCastExampleTest.executor": "Run",
-    "Gradle.PersonTest.testDataClassToString.executor": "Run",
-    "Gradle.java-kotlin-project 빌드.executor": "Run",
-    "Gradle.java-kotlin-project:app [:app:org.example.App.main()].executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "onboarding.tips.debug.path": "/Users/trongs/dev/sources/toy-projects/java-kotlin-project/app/src/main/kotlin/src/Main.kt",
-    "project.structure.last.edited": "모듈",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Gradle.'java-kotlin-project.app.test'에 있는 테스트.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.ConditionsAndLoopsTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.ConditionsAndLoopsTest.getDayTypeTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.ConditionsAndLoopsTest.getGradeTest (1).executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.ConditionsAndLoopsTest.getGradeTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.ImmutablePersonTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.NullSafetyTest (1).executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.NullSafetyTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.NullSafetyTest.findUserTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.NullSafetyTest.getDisplayNameTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.NullSafetyTest.getUpperCaseNameTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.NullSafetyTest.getUserEmailDomainTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.NullSafetyTest.processUserTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.NullSafetyTest.riskyFunctionTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.NullSafetyTest.smartCastExampleTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.PersonTest.testDataClassToString.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.java-kotlin-project 빌드.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.java-kotlin-project:app [:app:org.example.App.main()].executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;/Users/trongs/dev/sources/toy-projects/java-kotlin-project/app/src/main/kotlin/src/Main.kt&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;모듈&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="K2MoveDeclarationsDialog.RECENT_PACKAGE_KEY">
       <recent name="example.kotlin.dataclass" />
