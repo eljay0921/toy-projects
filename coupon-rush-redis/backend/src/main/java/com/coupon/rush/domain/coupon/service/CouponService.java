@@ -23,12 +23,12 @@ public class CouponService {
         validateCouponCreate(request);
 
         Coupon coupon = new Coupon(
-            request.getCode(),
-            request.getName(),
-            request.getDescription(),
-            request.getTotalQuantity(),
-            request.getStartAt(),
-            request.getEndAt()
+            request.code(),
+            request.name(),
+            request.description(),
+            request.totalQuantity(),
+            request.startAt(),
+            request.endAt()
         );
 
         Coupon savedCoupon = couponRepository.save(coupon);
@@ -62,11 +62,11 @@ public class CouponService {
     }
 
     private void validateCouponCreate(CouponCreateRequest request) {
-        if (couponRepository.existsByCode(request.getCode())) {
-            throw new IllegalArgumentException("Coupon code already exists: " + request.getCode());
+        if (couponRepository.existsByCode(request.code())) {
+            throw new IllegalArgumentException("Coupon code already exists: " + request.code());
         }
 
-        if (request.getStartAt().isAfter(request.getEndAt())) {
+        if (request.startAt().isAfter(request.endAt())) {
             throw new IllegalArgumentException("Start time must be before end time");
         }
     }

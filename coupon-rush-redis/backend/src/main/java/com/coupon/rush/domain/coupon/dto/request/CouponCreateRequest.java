@@ -9,26 +9,23 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
-@Getter
-@NoArgsConstructor
-@AllArgsConstructor
-public class CouponCreateRequest {
+public record CouponCreateRequest(
 
-    @NotBlank(message = "Coupon code is required")
-    private String code;
+        @NotBlank(message = "Coupon code is required")
+        String code,
 
-    @NotBlank(message = "Coupon name is required")
-    private String name;
+        @NotBlank(message = "Coupon name is required")
+        String name,
 
-    private String description;
+        String description,
 
-    @NotNull(message = "Total quantity is required")
-    @Min(value = 1, message = "Total quantity must be at least 1")
-    private Integer totalQuantity;
+        @NotNull(message = "Total quantity is required")
+        @Min(value = 1, message = "Total quantity must be at least 1")
+        Integer totalQuantity,
 
-    @NotNull(message = "Start time is required")
-    private LocalDateTime startAt;
+        @NotNull(message = "Start time is required")
+        LocalDateTime startAt,
 
-    @NotNull(message = "End time is required")
-    private LocalDateTime endAt;
-}
+        @NotNull(message = "End time is required")
+        LocalDateTime endAt
+) {}

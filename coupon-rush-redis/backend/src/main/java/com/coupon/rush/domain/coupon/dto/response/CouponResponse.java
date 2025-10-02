@@ -1,27 +1,22 @@
 package com.coupon.rush.domain.coupon.dto.response;
 
 import com.coupon.rush.domain.coupon.entity.Coupon;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
 
 import java.time.LocalDateTime;
 
-@Getter
-@AllArgsConstructor
-public class CouponResponse {
-
-    private Long id;
-    private String code;
-    private String name;
-    private String description;
-    private Integer totalQuantity;
-    private Integer issuedQuantity;
-    private LocalDateTime startAt;
-    private LocalDateTime endAt;
-    private boolean available;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
-
+public record CouponResponse(
+    Long id,
+    String code,
+    String name,
+    String description,
+    Integer totalQuantity,
+    Integer issuedQuantity,
+    LocalDateTime startAt,
+    LocalDateTime endAt,
+    boolean available,
+    LocalDateTime createdAt,
+    LocalDateTime updatedAt
+) {
     public static CouponResponse from(Coupon coupon) {
         return new CouponResponse(
             coupon.getId(),

@@ -48,12 +48,12 @@ class CouponServiceTest {
         );
 
         validCoupon = new Coupon(
-            validRequest.getCode(),
-            validRequest.getName(),
-            validRequest.getDescription(),
-            validRequest.getTotalQuantity(),
-            validRequest.getStartAt(),
-            validRequest.getEndAt()
+            validRequest.code(),
+            validRequest.name(),
+            validRequest.description(),
+            validRequest.totalQuantity(),
+            validRequest.startAt(),
+            validRequest.endAt()
         );
     }
 
@@ -61,7 +61,7 @@ class CouponServiceTest {
     @DisplayName("쿠폰 생성 성공")
     void createCoupon_Success() {
         // given
-        given(couponRepository.existsByCode(validRequest.getCode())).willReturn(false);
+        given(couponRepository.existsByCode(validRequest.code())).willReturn(false);
         given(couponRepository.save(any(Coupon.class))).willReturn(validCoupon);
 
         // when
@@ -69,12 +69,12 @@ class CouponServiceTest {
 
         // then
         assertThat(response).isNotNull();
-        assertThat(response.getCode()).isEqualTo(validRequest.getCode());
-        assertThat(response.getName()).isEqualTo(validRequest.getName());
-        assertThat(response.getTotalQuantity()).isEqualTo(validRequest.getTotalQuantity());
-        assertThat(response.getIssuedQuantity()).isZero();
+        assertThat(response.code()).isEqualTo(validRequest.code());
+        assertThat(response.name()).isEqualTo(validRequest.name());
+        assertThat(response.totalQuantity()).isEqualTo(validRequest.totalQuantity());
+        assertThat(response.issuedQuantity()).isZero();
 
-        verify(couponRepository).existsByCode(validRequest.getCode());
+        verify(couponRepository).existsByCode(validRequest.code());
         verify(couponRepository).save(any(Coupon.class));
     }
 
@@ -82,14 +82,14 @@ class CouponServiceTest {
     @DisplayName("중복된 쿠폰 코드로 생성 시 예외 발생")
     void createCoupon_DuplicateCode_ThrowsException() {
         // given
-        given(couponRepository.existsByCode(validRequest.getCode())).willReturn(true);
+        given(couponRepository.existsByCode(validRequest.code())).willReturn(true);
 
         // when & then
         assertThatThrownBy(() -> couponService.createCoupon(validRequest))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining("Coupon code already exists");
 
-        verify(couponRepository).existsByCode(validRequest.getCode());
+        verify(couponRepository).existsByCode(validRequest.code());
         verify(couponRepository, never()).save(any(Coupon.class));
     }
 
@@ -128,7 +128,7 @@ class CouponServiceTest {
 
         // then
         assertThat(response).isNotNull();
-        assertThat(response.getCode()).isEqualTo(validCoupon.getCode());
+        assertThat(response.code()).isEqualTo(validCoupon.getCode());
         verify(couponRepository).findById(couponId);
     }
 
@@ -159,7 +159,7 @@ class CouponServiceTest {
 
         // then
         assertThat(response).isNotNull();
-        assertThat(response.getCode()).isEqualTo(code);
+        assertThat(response.code()).isEqualTo(code);
         verify(couponRepository).findByCode(code);
     }
 
@@ -198,8 +198,8 @@ class CouponServiceTest {
 
         // then
         assertThat(responses).hasSize(2);
-        assertThat(responses.get(0).getCode()).isEqualTo(validCoupon.getCode());
-        assertThat(responses.get(1).getCode()).isEqualTo("SUMMER2024");
+        assertThat(responses.get(0).code()).isEqualTo(validCoupon.getCode());
+        assertThat(responses.get(1).code()).isEqualTo("SUMMER2024");
         verify(couponRepository).findAll();
     }
 
